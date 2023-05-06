@@ -65,8 +65,8 @@ shuffleWords.addEventListener('click', () => {
 });
 
 function showProgress() {
-  document.getElementById('words-progress').value = progress * 25;
-  document.getElementById('current-word').textContent = progress + 1;
+  document.querySelector('#words-progress').value = progress * 25;
+  document.querySelector('#current-word').textContent = progress + 1;
   makeCard(currentWords[progress]);
 }
 
@@ -105,14 +105,14 @@ function shuffle(array) {
 };
 
 function makeExamCard(key) {
-  let item = document.createElement("div");
+  const item = document.createElement("div");
   item.classList.add('card');
   item.textContent = key;
   return item;
 };
 
 function mixCards(arr) {
-  let newArr = [];
+  const newArr = [];
   arr.forEach((item) => {
     newArr.push(makeExamCard(item.word));
     newArr.push(makeExamCard(item.translate));
@@ -133,12 +133,12 @@ let firstCard = 0;
 let secondCard = 0;
 let firstCardIndex = 0;
 let secondCardIndex = 0;
-let size = Object.keys(words).length;
+const size = Object.keys(words).length;
 let endIndex = 0
 let click = false;
 
 function showExamProgress(value) {
-  let result = (100 * (value + 1)) / size;
+  const result = (100 * (value + 1)) / size;
   return Math.round(result);
 }
 
@@ -147,8 +147,8 @@ btnExam.addEventListener('click', () => {
   btnBack.classList.add('hidden');
   btnExam.classList.add('hidden');
   btnNext.classList.add('hidden');
-  document.getElementById('study-mode').classList.add('hidden');
-  document.getElementById('exam-mode').classList.remove('hidden');
+  document.querySelector('#study-mode').classList.add('hidden');
+  document.querySelector('#exam-mode').classList.remove('hidden');
   renderExamCard(mixCards(currentWords));
 
   timer = setInterval(() => {
@@ -167,7 +167,7 @@ btnExam.addEventListener('click', () => {
 })
 
 examCards.addEventListener("click", (event) => {
-  let card = event.target.closest(".card");
+  const card = event.target.closest(".card");
   if (click === false) {
     card.classList.add("correct");
     firstCard = card;
